@@ -96,7 +96,8 @@ Boolean selectAndExecuteTest()
 void taskTesting()
 {
 	WDT_startWatchdogKickTask(10 / portTICK_RATE_MS, FALSE);
-	InitSubsystems();
+	TestFirstActivationProcedure();
+	/*InitSubsystems();
 	//voltage_t curr_voltage = 0;
 	int i = 0;
 	while (1)
@@ -112,5 +113,13 @@ void taskTesting()
 		printf("GivatShmuel:main testing loop after delay: i= : %d\n",  i);
 		i++;
 	}
-	TestDumpTelemetry();
+	TestDumpTelemetry(); */
+}
+
+void TestFirstActivationProcedure()
+{
+	int err = StartSPI();
+	err = StartI2C();
+	err = StartFRAM();
+	firstActivationProcedure();
 }
